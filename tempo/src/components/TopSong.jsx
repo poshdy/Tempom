@@ -10,7 +10,7 @@ import { playPause, setActiveSong } from "../redux/features/playerSlice";
 const TopSong = ({data}) => {
     const dispatch = useDispatch()
     const { activeSong, isPlaying } = useSelector((state) => state.player);
-    const TopSongData =  data?.tracks?.slice(0, 2);
+    const TopSongData =  data?.tracks?.slice(0, 3);
     const handlePlayClick = ({ song,data,i}) => {
         dispatch(setActiveSong({ song, data, i }));
         dispatch(playPause(true));
@@ -19,7 +19,7 @@ const TopSong = ({data}) => {
         dispatch(playPause(false));
       }; 
   return (
-    <section className={`${styles.Container} md:${styles.Space} cursor-grabbing`}>
+    <section className={`${styles.Container} ${styles.Space} cursor-grabbing`}>
         <Swiper autoplay slidesPerView={1} pagination={{clickable:true , bulletActiveClass:true}}>
         {TopSongData?.map((song , i)=>(
         <SwiperSlide key={i}>
