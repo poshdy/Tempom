@@ -13,6 +13,7 @@ import Banner from "./Banner";
 import UserLists from "./UserLists";
 import Login from "./Login";
 import Favs from "./Favs";
+import FavsSongs from "./FavsSongs";
 
 export {
   NavBar,
@@ -30,4 +31,5 @@ export {
   ArtistTopHits,
   Login,
   Favs,
+  FavsSongs
 };

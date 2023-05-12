@@ -22,8 +22,7 @@ const Login = ({setLogin}) => {
           id: result.user.uid,
           name: result.user.displayName,
           pic: result.user.photoURL,
-          Favs:[],
-          RecentlyPlayed:[]
+        Favs:[]
         })
       );
       setLogin(false)

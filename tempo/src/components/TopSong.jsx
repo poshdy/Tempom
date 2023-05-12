@@ -19,7 +19,7 @@ const TopSong = ({data}) => {
         dispatch(playPause(false));
       }; 
   return (
-    <section className={`${styles.Container} ${styles.Space} cursor-grabbing`}>
+    <section className={`${styles.Container} md:${styles.Space} cursor-grabbing`}>
         <Swiper autoplay slidesPerView={1} pagination={{clickable:true , bulletActiveClass:true}}>
         {TopSongData?.map((song , i)=>(
         <SwiperSlide key={i}>
