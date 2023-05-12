@@ -24,7 +24,7 @@ const TopSong = ({data}) => {
         {TopSongData?.map((song , i)=>(
         <SwiperSlide key={i}>
         <img className='w-full h-[30%] md:hover:h-[650px] md:h-[600px] shadow-lg duration-300 ease-in-out shadow-black/60 object-cover rounded-3xl' src={song?.images?.background} />
-        <span className={`font-black text-5xl ${styles.SecColor}`}>{`#${i+1}`}</span>
+        <span className={`font-black text-5xl ${styles.SecColor}`}>{`${i+1}`}</span>
         <div  className=''>
             <h1 className={`text-7xl font-black ${styles.MainColor}`}>{song?.title}</h1>
             <h1 className={`text-7xl font-black ${styles.SecColor}`}>{song?.subtitle}</h1>
