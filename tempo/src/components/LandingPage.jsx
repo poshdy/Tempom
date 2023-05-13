@@ -9,9 +9,9 @@ const size = 30;
 const LandingPage = () => {
   return (
     <>
-      <section className={`bg-black rounded-2xl ${styles.Container} drop-shadow-lg md:hover:w-[90%] duration-500 ease-in-out `}>     
-      <h1 className={`text-7xl font-black text-center uppercase py-4 ${styles.MainColor} `}>All in One place </h1>
-      <div className=" w-[50%] mx-auto mb-[100px] text-center flex items-center py-8 justify-center md:justify-around gap-5 h-full">
+      <section className={`bg-black rounded-2xl ${styles.Container} drop-shadow-lg md:hover:w-[89%] duration-500 ease-in-out `}>     
+      <h1 className={`text-5xl md:text-7xl font-black text-center uppercase py-4 ${styles.MainColor} `}>All in One place </h1>
+      <div className=" w-[50%] mx-auto text-center flex items-center py-8 justify-center md:justify-around gap-5 h-full">
         <h3 className="flex flex-col items-center gap-2 hover:text-[#DB35E5]  duration-500 ease-in-out">
           <BsDiscFill  size={size} />
           Tracks 
