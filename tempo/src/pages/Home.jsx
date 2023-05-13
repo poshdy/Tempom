@@ -26,12 +26,15 @@ const Home = () => {
     dispatch(setActiveSong({ song, data, i }));
     dispatch(playPause(true));
   };
+  if(isFetching || isLoading){
+    return <Loader/>
+  }
   return (
     <>
-      {isFetching || (isLoading && <Loader />)}
       <TopSong data={data} />
       <LandingPage />
-      <section className={`${styles.Container}`}>
+      <div className={`${styles.Container} ${styles.Space}`}>
+      <section className={``}>
         <h1 className={`${styles.mainText}`}>Popular Tracks</h1>
         <div className="p-8 bg-black rounded-2xl shadow-md shadow-black/50 w-full">
           {topPlays?.map((song, i) => (
@@ -48,7 +51,7 @@ const Home = () => {
           ))}
         </div>
       </section>
-      <section className={`${styles.Container}  ${styles.Space} `}>
+      <section className={``}>
         <h1 className={`${styles.mainText}`}>Popular Artists</h1>
         <div className="p-2 md:p-8 bg-black rounded-2xl shadow-md shadow-black/50 w-full">
           <Swiper className="w-full" slidesPerView={4}>
@@ -66,6 +69,8 @@ const Home = () => {
           </Swiper>
         </div>
       </section>
+
+      </div>
       <Banner />
     </>
   );
