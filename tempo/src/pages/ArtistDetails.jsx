@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ArtistTopHits, Loader } from "../components";
 import { useGetArtistSummaryQuery } from "..//redux/services/shazamApi";
@@ -6,13 +6,28 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.min.css";
 import { styles } from "../styles";
 const ArtistDetails = () => {
+  const [slides , setSlides] = useState(false)
+  useEffect(()=>{
+    const calcWidth = ()=>{
+      if(window.innerWidth <= 700){
+        setSlides(true)
+      }else{
+        setSlides(false)
+      }
+
+    }
+    window.addEventListener('resize' , calcWidth)
+    return ()=> window.removeEventListener('resize',calcWidth)
+  },[])
   const { id: artistId } = useParams();
   const { data, isFetching, isLoading } = useGetArtistSummaryQuery({
     artistId,
   });
+
   if (isFetching || isLoading) {
     return <Loader />;
   }
+  
   const artistData = Object.values(data?.resources?.artists);
   const albums = Object.values(data?.resources?.albums)
     .reduce((map, ob) => map.set(ob.attributes.name, ob), new Map())
@@ -22,15 +37,15 @@ const ArtistDetails = () => {
   return (
     <div className={`${styles.Container}`}>
       <div
-        className={`flex items-center gap-2 ${styles.Rounded} ${styles.Space} bg-black p-9`}
+        className={`flex md:flex-row flex-col md:justify-start md:items-start justify-center items-center gap-2 ${styles.Rounded} ${styles.Space} bg-black p-9`}
       >
         <img
           src={artistData[0]?.attributes?.artwork?.url
-            ?.replace("{w}", "400")
-            .replace("{h}", "400")}
+            ?.replace("{w}", "250")
+            .replace("{h}", "250")}
         />
-        <div className="flex flex-col gap-3">
-          <h1 className={`${styles.mainText}`}>
+        <div className="flex items-center md:items-start flex-col gap-3">
+          <h1 className={`${styles.mainText} text-center md:text-left`}>
             {artistData[0]?.attributes.name}
           </h1>
           <h3 className={`${styles.Paragraph}`}>
@@ -41,7 +56,7 @@ const ArtistDetails = () => {
       <div className={`${styles.Space}`}>
         <h1 className={`${styles.mainText} my-2`}>Popular Albums</h1>
         <div className={`${styles.Rounded} bg-black p-9`}>
-          <Swiper slidesPerView={6} spaceBetween={10}>
+          <Swiper slidesPerView={slides ? 3 : 6} spaceBetween={10}>
             {FilteredAlbums.map((album, i) => (
               <SwiperSlide key={i}>
                 <div className="flex items-center flex-col gap-3">
@@ -52,7 +67,7 @@ const ArtistDetails = () => {
                         .replace("{h}", "250")}
                     />
                   </Link>
-                  <h3 className="truncate w-36">{album?.attributes?.name}</h3>
+                  <h3 className="truncate w-20">{album?.attributes?.name}</h3>
                 </div>
               </SwiperSlide>
             ))}
@@ -61,7 +76,7 @@ const ArtistDetails = () => {
       </div>
       <h1 className={`${styles.mainText} my-3`}>Top Hits</h1>
       <div className={` ${styles.Rounded} bg-black p-9 flex flex-col gap-5`}>
-        {topSongs.map((hit, i) => (
+        {topSongs.slice(0,6).map((hit, i) => (
           <ArtistTopHits key={i} data={hit?.attributes} />
         ))}
       </div>

@@ -30,7 +30,7 @@ const NavBar = () => {
   }
   return (
     <div>
-      <div className="fixed z-50 right-2 md:left-2 top-20 rounded-lg w-[60px] md:w-[100px]  h-[80%] flex flex-col  items-center justify-evenly bg-black drop-shadow-2xl">
+      <div className="fixed z-50 md:left-2 top-0 md:top-20 rounded-lg mx-auto  w-full md:w-[100px] h-[70px] md:h-[80%] flex flex-row md:flex-col  items-center justify-evenly bg-black drop-shadow-2xl">
         <Link to={"/"}>
           <img className="w-16 `rounded-lg" src={logo} alt="" />
         </Link>
@@ -62,7 +62,7 @@ const NavBar = () => {
       </div>
       <div
         className={` w-full flex items-center justify-center duration-300 ease-in-out ${
-          search ? "fixed top-2" : "fixed top-[-100%]"
+          search ? "fixed top-16 md:top-2 z-50" : "fixed top-[-100%]"
         }`}
       >
         <Searchbar />

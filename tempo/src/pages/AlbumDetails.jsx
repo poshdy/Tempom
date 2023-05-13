@@ -30,7 +30,7 @@ const AlbumDetails = () => {
         ))}
       </>
       <div className="flex flex-col gap-2 mt-20">
-        <h1 className="text-5xl font-black text-white mb-2 text-center">
+        <h1 className="text-3xl md:text-5xl font-black text-white mb-2 text-center">
           Track List
         </h1>
         {trackList?.data?.map((track) => (
@@ -38,11 +38,11 @@ const AlbumDetails = () => {
             <h2 className="text-xl font-bold">{`#${track.attributes.trackNumber}`}</h2>
             <img
               src={track.attributes.artwork.url
-                .replace("{w}", "150")
-                .replace("{h}", "150")}
+                .replace("{w}", "75")
+                .replace("{h}", "75")}
             />
             <>
-              <h1 className="text-2xl font-bold">{track.attributes.name}</h1>
+              <h1 className="text-lg md:text-2xl font-bold">{track.attributes.name}</h1>
               {/* <p className="text-gray-500">{track.attributes.artistName}</p> */}
             </>
           </div>

@@ -11,8 +11,8 @@ const Search = () => {
   const songs = data?.tracks?.hits.map((song) => song.track);
   if (isFetching) return <Loader title={`Searching ${searchTerm}...`} />;
   return (
-    <div className={`flex flex-col ${styles.Container} ${styles.Space}`}>
-      <h2 className={`${styles.mainText}`}>
+    <div className={`flex flex-col justify-center items-center ${styles.Container} ${styles.Space}`}>
+      <h2 className={`${styles.mainText} text-center py-2`}>
         Showing results for
         <span className={`font-black uppercase pl-1 ${styles.ThirdColor}`}>
           {searchTerm}
@@ -31,8 +31,8 @@ const Search = () => {
         ))}
       </div>
       <div className={`flex flex-wrap justify-center  p-5 bg-black/60  ${styles.Rounded}   gap-8 my-8`}>
-        {data?.artists?.hits.map((artist) => (
-          <div className="flex flex-col  items-center gap-2">
+        {data?.artists?.hits.map((artist , i) => (
+          <div key={i} className="flex flex-col  items-center gap-2">
             <img
               className="w-[250px] rounded-full  aspect-square"
               src={artist.artist.avatar}

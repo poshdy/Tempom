@@ -42,7 +42,7 @@ const SongDetails = () => {
         src={songData?.images?.coverart}
       />
 
-      <div className="flex flex-col items-center justify-center gap-2">
+      <div className="flex flex-col items-center justify-center md:justify-start md:items-start gap-2">
         <h4 className={`${styles.ThirdColor} font-bold text-lg`}>
         
           {songData.sections[0].metadata[2]?.text}
@@ -50,7 +50,7 @@ const SongDetails = () => {
         <h2 className={`${styles.mainText} ${styles.SecColor}`}>
           {songData?.subtitle}
         </h2>
-        <h1 className={`${styles.mainText} text-6xl`}>{songData?.title}</h1>
+        <h1 className={`${styles.mainText} text-center md:text-left text-4xl md:text-6xl`}>{songData?.title}</h1>
         <p className={`${styles.ThirdColor} font-bold text-lg`}>
           {songData.genres.primary}
         </p>
