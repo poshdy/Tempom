@@ -34,7 +34,7 @@ const Home = () => {
       <TopSong data={data} />
       <LandingPage />
       <div className={`${styles.Container} ${styles.Space}`}>
-      <section className={``}>
+      <>
         <h1 className={`${styles.mainText}`}>Popular Tracks</h1>
         <div className="p-8 bg-black rounded-2xl shadow-md shadow-black/50 w-full">
           {topPlays?.map((song, i) => (
@@ -50,11 +50,11 @@ const Home = () => {
             />
           ))}
         </div>
-      </section>
-      <section className={``}>
-        <h1 className={`${styles.mainText}`}>Popular Artists</h1>
-        <div className="p-2 md:p-8 bg-black rounded-2xl shadow-md shadow-black/50 w-full">
-          <Swiper className="w-full" slidesPerView={4}>
+      </>
+      <>
+        <h1 className={`${styles.mainText} py-3 mt-5`}>Popular Artists</h1>
+        <div className={`p-2 bg-black ${styles.Rounded} `}>
+          <Swiper  slidesPerView={4}>
             {topPlays?.map((song, i) => (
               <SwiperSlide key={i}>
                 <ArtistCard
@@ -68,7 +68,7 @@ const Home = () => {
             ))}
           </Swiper>
         </div>
-      </section>
+      </>
 
       </div>
       <Banner />
