@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   ArtistCard,
   Banner,
@@ -15,6 +15,23 @@ import { useSelector, useDispatch } from "react-redux";
 import { styles } from "../styles";
 import { playPause, setActiveSong } from "../redux/features/playerSlice";
 const Home = () => {
+  const [slides , setSlides] = useState(false)
+
+   
+
+  useEffect(()=>{
+    const calcWidth = ()=>{
+      if(window.innerWidth <= 700){
+        setSlides(true)
+      }else{
+        setSlides(false)
+      }
+
+    }
+    window.addEventListener('resize' , calcWidth)
+    return ()=> window.removeEventListener('resize',calcWidth)
+  },[])
+    
   const { activeSong, isPlaying } = useSelector((state) => state.player);
   const { data, isFetching, isLoading } = useGetTopChartsQuery();
   const topPlays = data?.tracks.slice(0, 13);
@@ -54,7 +71,7 @@ const Home = () => {
       <>
         <h1 className={`${styles.mainText} py-3 mt-5`}>Popular Artists</h1>
         <div className={`p-2 bg-black ${styles.Rounded} `}>
-          <Swiper  slidesPerView={4}>
+          <Swiper  slidesPerView={slides ? 3 : 6}>
             {topPlays?.map((song, i) => (
               <SwiperSlide key={i}>
                 <ArtistCard
