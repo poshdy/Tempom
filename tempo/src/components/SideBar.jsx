@@ -36,8 +36,8 @@ const SideBar = () => {
         </div>
         <div className="font-medium text-xl flex items-start gap-1 flex-col">
           <h1 className="text-sm font-bold text-white/80 ">Libariy</h1>
-          <Link to={'/'}>Discover</Link>
-          <Link to={'/'}>Genres</Link>
+          <Link to={'/discover'}>Discover</Link>
+          <Link to={'/discover'}>Genres</Link>
           <Link to={'/'}>Top Artists</Link>
         </div>
         <div className="font-medium text-xl flex items-start gap-1 flex-col">
