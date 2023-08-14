@@ -1,31 +1,23 @@
 import React, { useEffect, useState } from "react";
-import {
-  ArtistCard,
-  Banner,
-  LandingPage,
-  Loader,
-  SongBar,
-  SongCard,
-  TopSong,
-} from "../components";
+import { Banner, Loader, SongCard } from "../components";
 import { useGetTopChartsQuery } from "../redux/services/shazamApi";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.min.css";
 import { useSelector, useDispatch } from "react-redux";
 
-import { playPause, setActiveSong } from "../redux/features/playerSlice";
+// import { playPause, setActiveSong } from "../redux/features/playerSlice";
 const Home = () => {
   const { activeSong, isPlaying } = useSelector((state) => state.player);
   const { data: Toplays, isFetching, isLoading } = useGetTopChartsQuery();
 
-  const dispatch = useDispatch();
-  const handlePauseClick = () => {
-    dispatch(playPause(false));
-  };
-  const handlePlayClick = ({ song, data, i }) => {
-    dispatch(setActiveSong({ song, data, i }));
-    dispatch(playPause(true));
-  };
+  // const dispatch = useDispatch();
+  // const handlePauseClick = () => {
+  //   dispatch(playPause(false));
+  // };
+  // const handlePlayClick = ({ song, data, i }) => {
+  //   dispatch(setActiveSong({ song, data, i }));
+  //   dispatch(playPause(true));
+  // };
   if (isFetching || isLoading) {
     return <Loader />;
   }
@@ -50,7 +42,6 @@ const Home = () => {
 };
 
 export default Home;
-
 
 {
   /* <>
