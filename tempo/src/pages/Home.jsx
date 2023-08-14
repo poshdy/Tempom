@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { Banner, Loader, SongCard } from "../components";
+import React from "react";
+import { Loader, SongCard } from "../components";
 import { useGetTopChartsQuery } from "../redux/services/shazamApi";
-import { Swiper, SwiperSlide } from "swiper/react";
+
 import "swiper/swiper.min.css";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector} from "react-redux";
 
 // import { playPause, setActiveSong } from "../redux/features/playerSlice";
 const Home = () => {
@@ -42,26 +42,3 @@ const Home = () => {
 };
 
 export default Home;
-
-{
-  /* <>
-        <h1 className="tex-2xl">Popular Artists</h1>
-        <div className={`p-2 bg-black ${styles.Rounded} `}>
-          <Swiper  slidesPerView={slides ? 3 : 6}>
-            {topPlays?.map((song, i) => (
-              <SwiperSlide key={i}>
-                <ArtistCard
-                  track={song}
-                  i={i}
-                  data={topPlays}
-                  isPlaying={isPlaying}
-                  activeSong={activeSong}
-                />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
-      </> */
-}
-
-<Banner />;
