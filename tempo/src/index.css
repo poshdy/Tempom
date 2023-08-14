@@ -5,8 +5,11 @@
 
 
 body{
+ 
   font-family: Poppins;
-  background-color: #232323;
  
 }
 
+::-webkit-scrollbar {
+  display: none;
+}

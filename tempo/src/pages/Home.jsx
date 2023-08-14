@@ -5,36 +5,19 @@ import {
   LandingPage,
   Loader,
   SongBar,
+  SongCard,
   TopSong,
-
 } from "../components";
 import { useGetTopChartsQuery } from "../redux/services/shazamApi";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.min.css";
 import { useSelector, useDispatch } from "react-redux";
-import { styles } from "../styles";
+
 import { playPause, setActiveSong } from "../redux/features/playerSlice";
 const Home = () => {
-  const [slides , setSlides] = useState(false)
-
-   
-
-  useEffect(()=>{
-    const calcWidth = ()=>{
-      if(window.innerWidth <= 700){
-        setSlides(true)
-      }else{
-        setSlides(false)
-      }
-
-    }
-    window.addEventListener('resize' , calcWidth)
-    return ()=> window.removeEventListener('resize',calcWidth)
-  },[])
-    
   const { activeSong, isPlaying } = useSelector((state) => state.player);
-  const { data, isFetching, isLoading } = useGetTopChartsQuery();
-  const topPlays = data?.tracks.slice(0, 13);
+  const { data: Toplays, isFetching, isLoading } = useGetTopChartsQuery();
+
   const dispatch = useDispatch();
   const handlePauseClick = () => {
     dispatch(playPause(false));
@@ -43,33 +26,35 @@ const Home = () => {
     dispatch(setActiveSong({ song, data, i }));
     dispatch(playPause(true));
   };
-  if(isFetching || isLoading){
-    return <Loader/>
+  if (isFetching || isLoading) {
+    return <Loader />;
   }
   return (
-    <>
-      <TopSong data={data} />
-      <LandingPage />
-      <div className={`${styles.Container} ${styles.Space}`}>
-      <>
-        <h1 className={`${styles.mainText}`}>Popular Tracks</h1>
-        <div className="p-8 bg-black rounded-2xl shadow-md shadow-black/50 w-full">
-          {topPlays?.map((song, i) => (
-            <SongBar
-              key={i}
-              song={song}
-              i={i}
-              data={data}
-              isPlaying={isPlaying}
-              activeSong={activeSong}
-              handlePauseClick={handlePauseClick}
-              handlePlayClick={() => handlePlayClick({ song, data, i })}
-            />
-          ))}
-        </div>
-      </>
-      <>
-        <h1 className={`${styles.mainText} py-3 mt-5`}>Popular Artists</h1>
+    <section className="w-full">
+      <h3 className="font-bold tracking-tighter leading-tight text-3xl md:text-4xl lg:text-6xl">
+        Listen Now
+      </h3>
+      <div className="w-full flex flex-wrap items-start gap-3 my-3">
+        {Toplays?.tracks?.map((song) => (
+          <SongCard
+            song={song}
+            data={Toplays?.tracks}
+            isPlaying={isPlaying}
+            activeSong={activeSong}
+            key={song.key}
+          />
+        ))}
+      </div>
+    </section>
+  );
+};
+
+export default Home;
+
+
+{
+  /* <>
+        <h1 className="tex-2xl">Popular Artists</h1>
         <div className={`p-2 bg-black ${styles.Rounded} `}>
           <Swiper  slidesPerView={slides ? 3 : 6}>
             {topPlays?.map((song, i) => (
@@ -85,12 +70,7 @@ const Home = () => {
             ))}
           </Swiper>
         </div>
-      </>
+      </> */
+}
 
-      </div>
-      <Banner />
-    </>
-  );
-};
-
-export default Home;
+<Banner />;

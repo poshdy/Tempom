@@ -1,4 +1,4 @@
-import NavBar from "./NavBar";
+import SideBar from "./SideBar";
 import Searchbar from "./Searchbar";
 import SongCard from "./SongCard";
 import ArtistCard from "./ArtistCard";
@@ -16,7 +16,7 @@ import Favs from "./Favs";
 import FavsSongs from "./FavsSongs";
 
 export {
-  NavBar,
+  SideBar,
   UserLists,
   TopSong,
   SongCard,

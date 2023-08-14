@@ -23,45 +23,40 @@ const SongCard = ({ song, i, isPlaying, activeSong, data }) => {
     setClicked(!clicked);
   };
   return (
-    <div className="w-[300px] h-[400px] bg-[#373737] hover:bg-[#0b0b0b]/50 rounded-lg duration-300 ease-in-out flex items-center flex-col cursor-pointer">
+    <div className="relative rounded-2xl group duration-300 ease-in-out overflow-clip">
       <img
-        alt="song_img"
-        src={
-          song.images?.coverart
-            ? song.images?.coverart
-            : song.images?.background
-        }
-        className="w-[250px] mt-2 aspect-square object-cover rounded-lg"
+        className="w-full h-full object-cover -z-50"
+        src={song?.images?.coverart}
       />
-      <div className="w-[80%] flex items-center justify-between">
-        <div className="flex flex-col ">
-          <p className="font-semibold  w-36 text-lg text-white truncate">
-            <Link to={`/songs/${song?.key}`}>{song.title}</Link>
-          </p>
-          <p className="text-sm w-36 truncate text-gray-300 mt-1">
-            <Link
-              to={`/artists/${song?.artists[0]?.adamid}` }
-            >
-              {song.subtitle}
-            </Link>
-          </p>
-        </div>
-        <div className="flex items-center gap-1">
-        {user && (
-          <div onClick={addebe}>
-          {clicked ? <AiFillHeart size={30} /> : <AiOutlineHeart size={30} />}
-        </div>
-      )}
-      <PlayPause
-        isPlaying={isPlaying}
-        activeSong={activeSong}
-        song={song}
-        handlePause={handlePauseClick}
-        handlePlay={handlePlayClick}
-      />
-        </div>
+
+      <div className="w-full cursor-pointer absolute z-50 bottom-0 left-0 py-4 h-32 bg-white bg-opacity-20 backdrop-blur-lg drop-shadow-lg flex flex-col items-center gap-2">
+        <Link
+          className="font-bold text-lg text-white w-[50%] truncate text-center"
+          to={`/songs/${song?.key}`}
+        >
+          {song.title}
+        </Link>
+
+        <Link
+          className="font-medium text-sm text-white/80"
+          to={`/artists/${song?.artists[0]?.adamid}`}
+        >
+          {song.subtitle}
+        </Link>
       </div>
-    
+
+      <div className="hidden group-hover:block duration-300 ease-in-out absolute z-20 top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-full h-full bg-white bg-opacity-20 "> 
+      <div className="flex justify-center items-center w-full h-full cursor-pointer">
+
+        <PlayPause
+          isPlaying={isPlaying}
+          activeSong={activeSong}
+          song={song}
+          handlePause={handlePauseClick}
+          handlePlay={handlePlayClick}
+          />
+          </div>
+      </div>
     </div>
   );
 };
