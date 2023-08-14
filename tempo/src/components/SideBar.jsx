@@ -5,21 +5,9 @@ import { BiHome, BiLogOut, BiSearch } from "react-icons/bi";
 
 import { MdMic } from "react-icons/md";
 
-// const size = 25;
 const SideBar = () => {
-  // const [search, setSearch] = useState(false);
-  // const [login, setLogin] = useState(false);
-  // const [profile, setProfile] = useState(false);
-  // const { user } = useSelector((state) => state.user);
-  // const handleClick = () => {
-  //   setLogin(!login);
-  // };
-  // const handleClickProfile = () => {
-  //   setProfile(!profile);
-  // };
   return (
     <aside className="sticky left-0 top-0 h-screen w-[10%] bg-white bg-opacity-20 backdrop-blur-lg drop-shadow-lg">
-      {/* <span className="flex md:hidden" onClick={()=>setSearch(!search)}><BsMenuButton size={20}/></span> */}
       <nav
         className={` hidden md:flex flex-col items-start justify-around w-full h-full px-5 py-3`}
       >
@@ -52,8 +40,6 @@ const SideBar = () => {
           </Link>
         </div>
         <div className="font-medium text-xl flex items-start gap-1 flex-col">
-          {/* <h1 className="text-sm font-bold text-white/80 ">Libariy</h1> */}
-
           <Link to={"/"}>
             <MdMic size={20} />
           </Link>
